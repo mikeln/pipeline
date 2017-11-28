@@ -60,9 +60,9 @@ func CreateCluster(clusterType ClusterType) (*cluster.Cluster, error) {
 	//Inject configuration parameters
 	ssh_key_path := viper.GetString("dev.keypath")
 	if ssh_key_path != "" {
-			newCluster.SSH.PublicKeyPath = ssh_key_path
-			logger.Debug("Overwriting default SSH key path to: %s", newCluster.SSH.PublicKeyPath)
-			}
+		newCluster.SSH.PublicKeyPath = ssh_key_path
+		logger.Debug("Overwriting default SSH key path to: %s", newCluster.SSH.PublicKeyPath)
+	}
 
 	newCluster, err := initapi.InitCluster(newCluster)
 
