@@ -10,6 +10,7 @@ import:
   subpackages:
   - dialects/mysql
 - package: github.com/kris-nova/kubicorn
+  repo: git@github.com:banzaicloud/kubicorn.git
   subpackages:
   - apis/cluster
   - cutil
