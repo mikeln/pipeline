@@ -276,12 +276,17 @@ imports:
   version: 5b9ff866471762aa2ab2dced63c9fb6f53921342
 - name: github.com/kr/fs
   version: 2788f0dbd16903de03cb8186e5c7d97b69ad387b
+- name: github.com/packethost/packngo
+  version: master
+  subpackages:
+  - metadata
 - name: github.com/kris-nova/klone
   version: 0f45f451971d2a84d8435d07a46df6ddaac3c8be
   subpackages:
   - pkg/local
 - name: github.com/kris-nova/kubicorn
-  version: a684f96403fbc309159dae38e6a35aac2f985f20
+  repo: https://github.com/banzaicloud/kubicorn.git 
+  version: vendor-update
   subpackages:
   - apis/cluster
   - cloud
