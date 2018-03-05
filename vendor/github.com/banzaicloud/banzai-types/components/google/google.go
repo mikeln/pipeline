@@ -3,7 +3,10 @@ package google
 import (
 	"github.com/banzaicloud/banzai-types/constants"
 	"github.com/pkg/errors"
+	"strings"
 )
+
+var versionPrefix = "1.7."
 
 type CreateClusterGoogle struct {
 	Project string        `json:"project"`
@@ -16,8 +19,9 @@ type GoogleMaster struct {
 }
 
 type GoogleNode struct {
-	Count   int    `json:"count"`
-	Version string `json:"version"`
+	Count          int    `json:"count"`
+	Version        string `json:"version"`
+	ServiceAccount string `json:"serviceAccount"`
 }
 
 type UpdateClusterGoogle struct {
@@ -44,6 +48,14 @@ func (g *CreateClusterGoogle) Validate() error {
 
 	if g.Master == nil {
 		g.Master = &GoogleMaster{}
+	}
+
+	if strings.HasPrefix(g.Node.Version, versionPrefix) || strings.HasPrefix(g.Master.Version, versionPrefix) {
+		return constants.ErrorWrongKubernetesVersion
+	}
+
+	if g.Master.Version != g.Node.Version {
+		return constants.ErrorDifferentKubernetesVersion
 	}
 
 	if g.Node.Count == 0 {
